@@ -1,9 +1,8 @@
 import sys
 from pdf2image import convert_from_path
-from PIL import Image
 import pytesseract
 
-def pdf_to_hocr(pdf_file, output_folder):
+def pdf_to_text(pdf_file, output_folder):
     # Convert PDF to images
     images = convert_from_path(pdf_file)
 
@@ -12,17 +11,17 @@ def pdf_to_hocr(pdf_file, output_folder):
         img_path = f"{output_folder}/temp_page_{i+1}.png"
         img.save(img_path, 'PNG')
 
-        # Run Tesseract with hOCR config
-        hocr_data = pytesseract.image_to_pdf_or_hocr(img_path, extension='hocr')
+        # Run Tesseract with default config
+        text_data = pytesseract.image_to_string(img)
 
-        # Save hOCR data as an .html file
-        with open(f"{output_folder}/page_{i+1}.html", 'wb') as hocr_file:
-            hocr_file.write(hocr_data)
+        # Save OCR-ed text as a text file
+        with open(f"{output_folder}/page_{i+1}.txt", 'w') as text_file:
+            text_file.write(text_data)
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
-        print("Usage: python pdf_to_hocr.py input_pdf_file output_folder")
+        print("Usage: python pdf_to_text.py input_pdf_file output_folder")
     else:
         pdf_file = sys.argv[1]
         output_folder = sys.argv[2]
-        pdf_to_hocr(pdf_file, output_folder)
+        pdf_to_text(pdf_file, output_folder)

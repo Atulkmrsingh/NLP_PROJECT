@@ -1,0 +1,24 @@
+Observation: Word embedding done in a hyperbolic map results in better
+classified tree like structure of word vector.
+
+Hypothesis: The heirarchical ranking of the embedding will result in better
+machine learning task like bilingual lexicon induction, wsd.
+
+Prediction: After converting the word vector in the hyperbolic plane, the
+precision@1 of bilingual lexicon induction for both source and target language
+will increase as compared to normal proceteus solution.
+
+Experiment:we will convert to the source and target word to word vector and then
+plot the vector in a hyperbolic plane. We will try to transform source to target
+vector by couple of linear transformation and which we will find by decreasing
+the cosine distance between source and target languages. We will run a gradient
+descent in the same setting as previous for proceteus solution.
+
+a) Outcome of the experiment that validates the hypothesis: The
+precision@1 of bilingual lexicon induction for both source and target language
+will increase as compared to normal proceteus solution.
+
+b)Outcome of the experiment that invalidates the hypothesis: The
+precision@1 of bilingual lexicon induction for both source and target language
+will increase as compared to normal proceteus solution.
+
